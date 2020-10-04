@@ -43,7 +43,7 @@ Users of web-service can be divided into 4 groups:
 2) [PostgreSQL](https://www.postgresql.org/) Relational database management system for saving user's information.
 3) [Thymeleaf](https://www.thymeleaf.org/) A template engine, that can process XML/XHTML/HTML5.
 #### 3.2. User interface <a name="3.2"></a>
-User interface is represented using mockups [authorization form] (https://github.com/Pokemon3108/negotium/blob/master/documentation/mockup/authorization.pdf) and [resume with personal info form] (https://github.com/Pokemon3108/negotium/blob/master/documentation/mockup/resume.pdf)
+User interface is represented using mockups [authorization form](https://github.com/Pokemon3108/negotium/blob/master/documentation/mockup/authorization.pdf) and [resume with personal info form](https://github.com/Pokemon3108/negotium/blob/master/documentation/mockup/resume.pdf)
 #### 3.3. Communication interface <a name="3.3"></a>
 HTTP communication standart is used.
 
