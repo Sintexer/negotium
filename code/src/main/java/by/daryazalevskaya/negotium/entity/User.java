@@ -1,7 +1,23 @@
 package by.daryazalevskaya.negotium.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="usr")
+@Getter
+@Setter
 public class User {
-    private Role role;
-    private String email;
-    private String password;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Enumerated(EnumType.STRING)
+    protected Role role;
+
+    protected String email;
+    protected String password;
 }
