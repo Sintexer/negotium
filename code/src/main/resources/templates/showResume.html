@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume</title>
+</head>
+<body>
+
+<div>
+    <p>
+    <h2>Personal info</h2>
+    <p th:text="${resume.personalInfo.name}+${resume.personalInfo.surname}"></p>
+    <p th:text="${age}">years</p>
+    <p>Gender: <span th:text="${resume.personalInfo.gender}"></span></p>
+    <p>Place of living: <span th:text="${resume.personalInfo.country}"></span> ,
+        <span th:text="${resume.personalInfo.city}"></span></p>
+</div>
+
+<div>
+    <h2>Contact info</h2>
+    <p>Phone: <span th:text="${resume.contact.telephone}"></span>
+    </p>
+    <p>Email: <span th:text="${resume.contact.email}"></span>
+    </p>
+    <p th:if="${resume.contact.skype!=null}">
+        <span th:text="${resume.contact.skype}"></span>
+    </p>
+</div>
+
+<div>
+    <h2>Job preference</h2>
+    <p> Desired position: <span th:text="${resume.jobPreference.desiredPosition}"></span>
+    </p>
+    <p> Desired salary: <span th:text="${resume.jobPreference.salary}"></span>
+    </p>
+    <p> Work schedule: <span th:text="${resume.jobPreference.schedule}"></span>
+    </p>
+</div>
+
+<div>
+    <h2>Skills</h2>
+    <p><span th:text="${resume.skills}"></span></p>
+</div>
+
+<div>
+    <h2>Foreign language</h2>
+    <p th:text="${resume.foreignLanguage.languageName}"></p>
+    <p><span th:text="${resume.foreignLanguage.level}"></span>
+    </p>
+</div>
+
+</body>
+</html>
