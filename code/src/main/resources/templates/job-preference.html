@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Personal employee info</title>
+    <title>Employee job preferences</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
@@ -13,7 +13,8 @@
     <div class="container">
 
         <a class="navbar-brand" href="#">Negotium</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -37,41 +38,36 @@
 
 
 <div class="container">
-    <!--    <h1>Personal employee info</h1>-->
+    <h1 class="text-center my-sm-3">Job preference</h1>
 
-    <h1 class="text-center my-sm-3">Personal employee info</h1>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-4">
+            <div class="col-5">
 
-                <form th:action="@{/savePersonalInfo}" th:object="${info}" method="post">
-
+                <form th:action="@{/saveJobPreference}" th:object="${jobPreference}" method="post">
                     <div class="form-group">
-                        <label for="name">First name</label>
-                        <input type="text" class="form-control" id="name" th:value="${info.name}" th:field="*{name}">
+                        <label for="pos">Desired position</label>
+                        <input type="text" class="form-control" id="pos" th:value="${jobPreference.desiredPosition}"
+                               th:field="*{desiredPosition}">
                     </div>
 
                     <div class="form-group">
-                        <label th:for="surname">Surname</label>
-                        <input th:type="text" class="form-control" id="surname" th:value="${info.surname}"
-                               th:field="*{surname}">
+                        <label for="salary">Desired salary(USD)</label>
+                        <input type="number" class="form-control" id="salary" aria-describedby="emailHelp"
+                               th:value="${jobPreference.salary}" th:field="*{salary}">
                     </div>
 
-                    <div class="form-group">
-                        <label for="inputDate">Birthday</label>
-                        <input type="date" class="form-control" id="inputDate" th:value="${info.birthday}">
-                    </div>
 
-                    <fieldset class="form-group" th:value="${info.gender}" th:field="*{gender}">
+                    <fieldset class="form-group" th:value="${jobPreference.schedule}" th:field="*{schedule}">
                         <div class="row">
-                            <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+                            <legend class="col-form-label col-sm-2 pt-0">Work schedule</legend>
                             <div class="col-sm-10">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
                                            value="option1"
                                            checked>
                                     <label class="form-check-label" for="gridRadios1">
-                                        Female
+                                        Full-time
                                     </label>
                                 </div>
                                 <div class="form-check">
@@ -79,27 +75,15 @@
                                            value="option1"
                                            checked>
                                     <label class="form-check-label" for="gridRadios2">
-                                        Male
+                                        Part-time
                                     </label>
                                 </div>
                             </div>
                         </div>
                     </fieldset>
 
-                    <div class="form-group">
-                        <label for="country">Country</label>
-                        <input type="text" class="form-control" id="country" th:value="${info.country}"
-                               th:field="country">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="city">City</label>
-                        <input type="text" class="form-control" id="city" th:value="${info.city}" th:field="city">
-                    </div>
-
-                    <div><input type="submit" class="btn btn-primary" value="Save changes"/></div>
+                    <div><input type="submit" value="Save changes"/></div>
                 </form>
-
             </div>
         </div>
     </div>

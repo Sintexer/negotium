@@ -23,6 +23,6 @@ public class Resume {
     private String skills;
     private Language foreignLanguage;
     private LocalDate updateDate;
-    private boolean isRaised;
+    private boolean isRaised=false;
 
 }
