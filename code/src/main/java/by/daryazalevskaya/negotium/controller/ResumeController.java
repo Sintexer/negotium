@@ -5,13 +5,15 @@ import by.daryazalevskaya.negotium.entity.employee.Employee;
 import by.daryazalevskaya.negotium.entity.employee.EmployeePersonalInfo;
 import by.daryazalevskaya.negotium.entity.employee.JobPreference;
 import by.daryazalevskaya.negotium.entity.employee.Language;
+import by.daryazalevskaya.negotium.service.ConvertService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
-import java.time.Period;
 
 @Controller
 @RequestMapping("/resume")
@@ -89,7 +91,8 @@ public class ResumeController {
         //получить текущего юезра,достать от него резюме
         model.addAttribute("resume", employee.getResume());
         LocalDate birthday = employee.getResume().getPersonalInfo().getBirthday();
-        int age = Period.between(birthday, LocalDate.now()).getYears();
+        ConvertService converter=new ConvertService();
+        int age = converter.countAge(birthday);
         model.addAttribute("age", age);
         return "showResume";
     }
