@@ -2,6 +2,7 @@ package by.daryazalevskaya.negotium.entity.employer;
 
 import by.daryazalevskaya.negotium.entity.Contact;
 import by.daryazalevskaya.negotium.entity.User;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,8 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "employer")
-@Getter
-@Setter
+@Data
 public class Employer {
 
     @Id

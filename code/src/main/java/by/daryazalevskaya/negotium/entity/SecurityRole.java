@@ -1,6 +1,5 @@
 package by.daryazalevskaya.negotium.entity;
 
-public enum Role {
-    EMPLOYER,
-    EMPLOYEE
+public enum SecurityRole {
+    USER, ADMIN;
 }

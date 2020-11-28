@@ -1,6 +1,7 @@
 package by.daryazalevskaya.negotium.entity.employee;
 
 import by.daryazalevskaya.negotium.entity.Contact;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,8 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "resume")
-@Getter
-@Setter
+@Data
 public class Resume {
 
     @Id

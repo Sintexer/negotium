@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.time.LocalDate;
 
 @Controller
-@RequestMapping("/resume")
+@RequestMapping("/employee/resume")
 public class ResumeController {
 
     @GetMapping("/savePersonalInfo")

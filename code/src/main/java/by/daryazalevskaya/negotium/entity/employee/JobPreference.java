@@ -1,13 +1,13 @@
 package by.daryazalevskaya.negotium.entity.employee;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
-@Getter
-@Setter
+@Data
 public class JobPreference {
     private String desiredPosition;
     private int salary;
