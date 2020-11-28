@@ -8,6 +8,8 @@ import by.daryazalevskaya.negotium.entity.employer.Employer;
 import by.daryazalevskaya.negotium.repos.EmployeeRepos;
 import by.daryazalevskaya.negotium.repos.EmployerRepos;
 import by.daryazalevskaya.negotium.repos.UserRepos;
+import by.daryazalevskaya.negotium.service.EmployeeFactory;
+import by.daryazalevskaya.negotium.service.EmployerFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,17 +35,16 @@ public class RegistrationController {
     private UserRepos userRepos;
 
     @Autowired
-    private EmployerRepos employerRepos;
-
-    @Autowired
-    private EmployeeRepos employeeRepos;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private EmployerFactory employerFactory;
+
+    @Autowired
+    private EmployeeFactory employeeFactory;
 
     @GetMapping
     public String registration(Model model) {
-
         model.addAttribute("roles", Role.values());
         model.addAttribute("user", new User());
         return "registration";
@@ -52,34 +53,26 @@ public class RegistrationController {
     @PostMapping
     public String addUser(User user, Model model) {
         User userFromDb = userRepos.findUserByUsername(user.getUsername());
-
         if (userFromDb != null) {
             model.addAttribute("message_exists", "User exists!");
             return "registration";
         }
 
         user.setActive(true);
-        Set<SecurityRole> roles=new HashSet<>();
-        roles.add(SecurityRole.USER);
-        user.setRoles(roles);
+        user.setRoles(Set.of(SecurityRole.USER));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        userRepos.save(user);
 
         Role userRole=user.getRole();
         switch (userRole) {
             case EMPLOYEE:
-                Employee employee=new Employee();
-                employee.setUser(user);
-                employeeRepos.save(employee);
+                employeeFactory.saveEmployee(user);
                 break;
             case EMPLOYER:
-                Employer employer=new Employer();
-                employer.setUser(user);
-                employerRepos.save(employer);
+                employerFactory.saveEmployee(user);
                 break;
         }
-
-        User userr1=userRepos.save(user);
-        logger.info(userr1);
         return "redirect:/login";
     }
 

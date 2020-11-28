@@ -19,6 +19,8 @@ import java.time.LocalDate;
 @RequestMapping("/employee/resume")
 public class ResumeController {
 
+    private static final String RESUME_PAGE="showResume";
+
     @GetMapping("/savePersonalInfo")
     public String editEmployeePersonalInfo(Model model) {
         //TODO получить резюме текущего пользователя
@@ -29,7 +31,7 @@ public class ResumeController {
     @PostMapping("/savePersonalInfo")
     public String savePersonalInfo(@ModelAttribute EmployeePersonalInfo info, Model model) {
         //получить текущего юзера и сохранить в него info
-        return "showResume";
+        return RESUME_PAGE;
     }
 
     @GetMapping("/saveContact")
@@ -42,7 +44,7 @@ public class ResumeController {
     @PostMapping("/saveContact")
     public String saveContact(@ModelAttribute Contact contact, Model model) {
         //получить текущего юзера и сохранить в него contact
-        return "showResume";
+        return RESUME_PAGE;
     }
 
     @GetMapping("/saveJobPreference")
@@ -55,7 +57,7 @@ public class ResumeController {
     @PostMapping("/saveJobPreference")
     public String saveJobPreference(@ModelAttribute JobPreference jobPreference, Model model) {
         //получить текущего юзера и сохранить в него contact
-        return "showResume";
+        return RESUME_PAGE;
     }
 
     @GetMapping("/saveSkills")
@@ -68,7 +70,7 @@ public class ResumeController {
     @PostMapping("/saveSkills")
     public String saveSkills(@ModelAttribute String skills, Model model) {
         //получить текущего юзера и сохранить в него contact
-        return "showResume";
+        return RESUME_PAGE;
     }
 
     @GetMapping("/saveLanguage")
@@ -81,7 +83,7 @@ public class ResumeController {
     @PostMapping("/saveLanguage")
     public String saveLanguage(@ModelAttribute Language language, Model model) {
         //получить текущего юзера и сохранить в него contact
-        return "showResume";
+        return RESUME_PAGE;
     }
 
     @GetMapping("/show")
@@ -90,11 +92,12 @@ public class ResumeController {
 
         //получить текущего юезра,достать от него резюме
         model.addAttribute("resume", employee.getResume());
+
         LocalDate birthday = employee.getResume().getPersonalInfo().getBirthday();
         ConvertService converter=new ConvertService();
         int age = converter.countAge(birthday);
         model.addAttribute("age", age);
-        return "showResume";
+        return RESUME_PAGE;
     }
 
 
