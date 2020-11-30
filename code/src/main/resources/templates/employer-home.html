@@ -2,12 +2,88 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Employer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<p>Hello employer</p>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
+
+<div th:insert="footer :: footer-employer"></div>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-nd-3">
+        <div class="col">
+            <div class="card-body border my-sm-3 h-100">
+                <h3 class="card-title">Employer info</h3>
+                <h4 class="card-subtitle mb-2 text-muted"
+                    th:if="${employer.companyName!=null}"
+                    th:text="${employer.companyName}"></h4>
+                <p>
+                    <strong>Location</strong>
+                    <span th:text="${employer.country}">,</span>
+                    <span th:text="${employer.city}"></span>
+                </p>
+                <a href="#" class="btn btn-primary">Edit</a>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card-body col mb-4 border my-sm-3 h-100" th:with="contact=${employer.contact}">
+                <h3 class="card-title">Contact info</h3>
+                <div th:if="${contact != null}">
+                    <p>
+                        <strong>Phone:</strong>
+                        <span th:text="${contact.telephone}"></span>
+                    </p>
+                    <p>
+                        <strong>Email:</strong>
+                        <span th:text="${contact.email}"></span>
+                    </p>
+                    <p th:if="${contact.skype!=null}">
+                        <strong>Skype: </strong>
+                        <span th:text="${contact.skype}"></span>
+                    </p>
+                </div>
+                <a href="#" class="btn btn-primary">Edit</a>
+            </div>
+        </div>
+
+    </div>
+
+    <h3 class="my-sm-5">Vacancies</h3>
+
+    <div th:if="${not #lists.isEmpty(employer.vacancies)}">
+        <div th:each="vacancy : ${employer.vacancies}">
+            <div class="card-body col mb-4 border my-sm-3">
+                <h3 class="card-title" th:text="${vacancy.getPosition()}"></h3>
+
+                <p>
+                    <strong>Location: </strong>
+                    <span th:text="${vacancy.city} , ${vacancy.address}"></span>
+                </p>
+                <p>
+                    <strong>Minimal experience</strong>
+                    <span th:text="${vacancy.minExperience}">years</span>
+                </p>
+                <p>
+                    <strong>Schedule: </strong>
+                    <span th:text="${vacancy.schedule}"></span>
+                </p>
+                <p>
+                    <strong>Duties</strong>
+                    <span th:text="${vacancy.duties}"></span>
+                </p>
+                <p>
+                    <strong>Requirements:</strong>
+                    <span th:text="${vacancy.requirements}"></span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
 </body>
 </html>

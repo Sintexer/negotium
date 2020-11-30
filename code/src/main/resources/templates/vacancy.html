@@ -7,31 +7,8 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-    <div class="container">
-
-        <a class="navbar-brand" href="#">Negotium</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Watch employees <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Open vacancy <span class="sr-only">(current)</span></a>
-                </li>
-
-            </ul>
-
-        </div>
-    </div>
-</nav>
-
+<div th:insert="footer :: footer-employer"></div>
 
 <div class="container">
     <h1 class="text-center my-sm-3">Vacancy</h1>
@@ -41,6 +18,13 @@
             <div class="col-4">
 
                 <form th:action="@{/open}" th:object="${vacancy}" method="post">
+
+                    <div class="form-group">
+                        <label for="pos">Position </label>
+                        <input type="text" class="form-control" id="pos" th:value="${vacancy.position}"
+                               th:field="*{position}">
+                    </div>
+
                     <div class="form-group">
                         <label for="city">Location (city) </label>
                         <input type="text" class="form-control" id="city" th:value="${vacancy.city}"

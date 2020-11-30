@@ -31,7 +31,7 @@ public class ResumeController {
     @Autowired
     private AuthenticationService authenticationService;
 
-    private static final String RESUME_PAGE="showResume";
+    private static final String RESUME_PAGE="employee-home";
 
     @GetMapping("/savePersonalInfo")
     public String editEmployeePersonalInfo(Model model) {

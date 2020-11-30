@@ -16,6 +16,8 @@ public class Vacancy {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String position;
+
     private String city;
     private String address;
     private int minExperience;
