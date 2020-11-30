@@ -1,16 +1,21 @@
 package by.daryazalevskaya.negotium.entity.employee;
 
 import by.daryazalevskaya.negotium.entity.User;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "employee")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Employee  {
+
+    public Employee (User user) {
+        this.user=user;
+        this.resume=new Resume();
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

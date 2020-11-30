@@ -2,9 +2,7 @@ package by.daryazalevskaya.negotium.entity.employer;
 
 import by.daryazalevskaya.negotium.entity.Contact;
 import by.daryazalevskaya.negotium.entity.User;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,7 +10,13 @@ import java.util.List;
 @Entity
 @Table(name = "employer")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Employer {
+
+    public Employer (User user) {
+        this.user=user;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

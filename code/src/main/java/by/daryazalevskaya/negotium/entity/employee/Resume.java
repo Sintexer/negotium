@@ -19,7 +19,8 @@ public class Resume {
 
     private EmployeePersonalInfo personalInfo;
     private Contact contact;
-    private JobPreference jobPreference;
+
+    private JobPreference jobPreference=new JobPreference();
     private String skills;
     private Language foreignLanguage;
     private LocalDate updateDate;

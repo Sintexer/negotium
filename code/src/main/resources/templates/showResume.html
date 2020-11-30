@@ -38,76 +38,83 @@
 
 <div class="container">
 
-    <div class="card-body border my-sm-3">
+    <div class="card-body border my-sm-3" th:with="persInfo=${resume.personalInfo}">
         <h3 class="card-title">Personal info</h3>
-            <h4 class="card-subtitle mb-2 text-muted" th:text="${resume.personalInfo.name}+' '+${resume.personalInfo.surname}"></h4>
-                <p>
-                    <strong>Age:</strong>
-                    <span th:text="${age}">years</span>
-                </p>
-                <p>
-                    <strong>Gender:</strong>
-                    <span th:text="${resume.personalInfo.gender}"></span>
-                </p>
-                <p>
-                    <strong>Place of living: </strong>
-                    <span th:text="${resume.personalInfo.country}">,</span>
-                    <span th:text="${resume.personalInfo.city}"></span>
-                </p>
-                <a href="#" class="btn btn-primary">Edit</a>
-    </div>
-
-    <div class="card-body border my-sm-3">
-        <h3 class="card-title">Contact info</h3>
-        <p>
-            <strong>Phone:</strong>
-            <span th:text="${resume.contact.telephone}"></span>
-        </p>
-        <p>
-            <strong>Email:</strong>
-            <span th:text="${resume.contact.email}"></span>
-        </p>
-        <p th:if="${resume.contact.skype!=null}">
-            <strong>Skype: </strong>
-            <span th:text="${resume.contact.skype}"></span>
-        </p>
+        <div th:if="${persInfo != null}">
+            <h4 class="card-subtitle mb-2 text-muted"
+                th:text="${persInfo.name}+' '+${persInfo.surname}"></h4>
+            <p>
+                <strong>Age:</strong>
+                <span th:text="${age}">years</span>
+            </p>
+            <p>
+                <strong>Gender:</strong>
+                <span th:text="${persInfo.gender}"></span>
+            </p>
+            <p>
+                <strong>Place of living: </strong>
+                <span th:text="${persInfo.country}">,</span>
+                <span th:text="${persInfo.city}"></span>
+            </p>
+        </div>
         <a href="#" class="btn btn-primary">Edit</a>
     </div>
 
-    <div class="card-body border my-sm-3">
+    <div class="card-body border my-sm-3" th:with="contact=${resume.contact}">
+        <h3 class="card-title">Contact info</h3>
+        <div th:if="${contact != null}">
+            <p>
+                <strong>Phone:</strong>
+                <span th:text="${contact.telephone}"></span>
+            </p>
+            <p>
+                <strong>Email:</strong>
+                <span th:text="${contact.email}"></span>
+            </p>
+            <p th:if="${contact.skype!=null}">
+                <strong>Skype: </strong>
+                <span th:text="${contact.skype}"></span>
+            </p>
+        </div>
+        <a href="#" class="btn btn-primary">Edit</a>
+    </div>
+
+    <div class="card-body border my-sm-3" th:with="job=${resume.jobPreference}">
         <h3 class="card-title">Job preference</h3>
-        <p>
-            <strong>Desired position:</strong>
-            <span th:text="${resume.jobPreference.desiredPosition}"></span>
-        </p>
-        <p>
-            <strong>Desired salary:</strong>
-            <span th:text="${resume.jobPreference.salary}"></span>
-        </p>
-        <p>
-            <strong>Work schedule:</strong>
-            <span th:text="${resume.jobPreference.schedule}"></span>
-        </p>
+            <p th:if="${job.desiredPosition!=null}">
+                <strong>Desired position:</strong>
+                <span th:text="${job.desiredPosition}"></span>
+            </p>
+            <p th:if="${job.salary!=0}">
+                <strong>Desired salary:</strong>
+                <span th:text="${job.salary}"></span>
+            </p>
+            <p th:if="${job.schedule!=null}">
+                <strong>Work schedule:</strong>
+                <span th:text="${job.schedule}"></span>
+            </p>
         <a href="#" class="btn btn-primary">Edit</a>
     </div>
 
     <div class="card-body border my-sm-3">
         <h3 class="card-title">Skills</h3>
         <p>
-            <span th:text="${${resume.skills}}"></span>
+            <span th:if="${resume.skills!=null}" th:text="${${resume.skills}}"></span>
         </p>
         <a href="#" class="btn btn-primary">Edit</a>
     </div>
 
-    <div class="card-body border my-sm-3">
+    <div class="card-body border my-sm-3" th:with="lang=${resume.foreignLanguage}">
         <h3 class="card-title">Foreign language</h3>
-        <p>
-            <span th:text="${resume.foreignLanguage.languageName}"></span>
-        </p>
-        <p>
-            <strong>Level: </strong>
-            <span th:text="${resume.foreignLanguage.level}"></span>
-        </p>
+        <div th:if="${lang != null}">
+            <p>
+                <span th:text="${lang.languageName}"></span>
+            </p>
+            <p>
+                <strong>Level: </strong>
+                <span th:text="${lang.level}"></span>
+            </p>
+        </div>
         <a href="#" class="btn btn-primary">Edit</a>
     </div>
 </div>

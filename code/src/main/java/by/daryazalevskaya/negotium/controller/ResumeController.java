@@ -1,11 +1,14 @@
 package by.daryazalevskaya.negotium.controller;
 
 import by.daryazalevskaya.negotium.entity.Contact;
-import by.daryazalevskaya.negotium.entity.employee.Employee;
-import by.daryazalevskaya.negotium.entity.employee.EmployeePersonalInfo;
-import by.daryazalevskaya.negotium.entity.employee.JobPreference;
-import by.daryazalevskaya.negotium.entity.employee.Language;
+import by.daryazalevskaya.negotium.entity.employee.*;
+import by.daryazalevskaya.negotium.repos.EmployeeRepos;
+import by.daryazalevskaya.negotium.repos.UserRepos;
+import by.daryazalevskaya.negotium.service.AuthenticationService;
 import by.daryazalevskaya.negotium.service.ConvertService;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,12 @@ import java.time.LocalDate;
 @Controller
 @RequestMapping("/employee/resume")
 public class ResumeController {
+
+    @Autowired
+    private EmployeeRepos employeeRepos;
+
+    @Autowired
+    private UserRepos userRepos;
 
     private static final String RESUME_PAGE="showResume";
 
@@ -86,17 +95,24 @@ public class ResumeController {
         return RESUME_PAGE;
     }
 
+    @Autowired
+    private AuthenticationService authenticationService;
+
     @GetMapping("/show")
     public String showResume(Model model) {
-        Employee employee = new Employee();
+        Employee employee= authenticationService.getAuthentithicatedEmployee();
 
-        //получить текущего юезра,достать от него резюме
         model.addAttribute("resume", employee.getResume());
 
-        LocalDate birthday = employee.getResume().getPersonalInfo().getBirthday();
-        ConvertService converter=new ConvertService();
-        int age = converter.countAge(birthday);
-        model.addAttribute("age", age);
+        Resume resume=employee.getResume();
+        if (resume.getPersonalInfo()!=null) {
+            LocalDate birthday = employee.getResume().getPersonalInfo().getBirthday();
+            ConvertService converter=new ConvertService();
+            int age = converter.countAge(birthday);
+            model.addAttribute("age", age);
+        }
+
+
         return RESUME_PAGE;
     }
 

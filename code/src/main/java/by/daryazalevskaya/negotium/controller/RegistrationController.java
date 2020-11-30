@@ -8,8 +8,6 @@ import by.daryazalevskaya.negotium.entity.employer.Employer;
 import by.daryazalevskaya.negotium.repos.EmployeeRepos;
 import by.daryazalevskaya.negotium.repos.EmployerRepos;
 import by.daryazalevskaya.negotium.repos.UserRepos;
-import by.daryazalevskaya.negotium.service.EmployeeFactory;
-import by.daryazalevskaya.negotium.service.EmployerFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.HashSet;
 import java.util.Set;
 
 @Controller
@@ -38,10 +33,10 @@ public class RegistrationController {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private EmployerFactory employerFactory;
+    private EmployeeRepos employeeRepos;
 
     @Autowired
-    private EmployeeFactory employeeFactory;
+    private EmployerRepos employerRepos;
 
     @GetMapping
     public String registration(Model model) {
@@ -63,16 +58,17 @@ public class RegistrationController {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         userRepos.save(user);
-
         Role userRole=user.getRole();
         switch (userRole) {
             case EMPLOYEE:
-                employeeFactory.saveEmployee(user);
+                employeeRepos.save(new Employee(user));
                 break;
             case EMPLOYER:
-                employerFactory.saveEmployee(user);
+               employerRepos.save(new Employer(user));
                 break;
         }
+
+
         return "redirect:/login";
     }
 

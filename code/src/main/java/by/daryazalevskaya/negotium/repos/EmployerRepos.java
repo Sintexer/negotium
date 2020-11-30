@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EmployerRepos extends CrudRepository<Employer, Long> {
+    Employer findEmployerByUserId(Long id);
 }
