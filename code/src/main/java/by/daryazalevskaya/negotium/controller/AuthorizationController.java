@@ -29,7 +29,7 @@ public class AuthorizationController {
         if (userRole == Role.EMPLOYEE) {
             request="redirect:/employee/resume/show";
         } else {
-            request = "homeEmployer";
+            request = "redirect:/employer/home";
         }
         return request;
     }

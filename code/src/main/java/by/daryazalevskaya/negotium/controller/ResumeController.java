@@ -28,75 +28,86 @@ public class ResumeController {
     @Autowired
     private UserRepos userRepos;
 
+    @Autowired
+    private AuthenticationService authenticationService;
+
     private static final String RESUME_PAGE="showResume";
 
     @GetMapping("/savePersonalInfo")
     public String editEmployeePersonalInfo(Model model) {
-        //TODO получить резюме текущего пользователя
-        model.addAttribute("info", new EmployeePersonalInfo());
+        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        model.addAttribute("info", employee.getResume().getPersonalInfo());
         return "personal-employee-info";
     }
 
     @PostMapping("/savePersonalInfo")
     public String savePersonalInfo(@ModelAttribute EmployeePersonalInfo info, Model model) {
-        //получить текущего юзера и сохранить в него info
+        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        employee.getResume().setPersonalInfo(info);
+        employeeRepos.save(employee);
         return RESUME_PAGE;
     }
 
     @GetMapping("/saveContact")
     public String editContact(Model model) {
-        //TODO получить резюме текущего пользователя
-        model.addAttribute("contact", new Contact());
+        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        model.addAttribute("contact", employee.getResume().getContact());
         return "contact";
     }
 
     @PostMapping("/saveContact")
     public String saveContact(@ModelAttribute Contact contact, Model model) {
-        //получить текущего юзера и сохранить в него contact
+        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        employee.getResume().setContact(contact);
+        employeeRepos.save(employee);
         return RESUME_PAGE;
     }
 
     @GetMapping("/saveJobPreference")
     public String editJobPreference(Model model) {
-        //TODO получить резюме текущего пользователя
-        model.addAttribute("jobPreference", new JobPreference());
+        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        model.addAttribute("jobPreference", employee.getResume().getJobPreference());
         return "job-preference";
     }
 
     @PostMapping("/saveJobPreference")
     public String saveJobPreference(@ModelAttribute JobPreference jobPreference, Model model) {
-        //получить текущего юзера и сохранить в него contact
+        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        employee.getResume().setJobPreference(jobPreference);
+        employeeRepos.save(employee);
         return RESUME_PAGE;
     }
 
     @GetMapping("/saveSkills")
     public String editSkills(Model model) {
-        //TODO получить резюме текущего пользователя
-        model.addAttribute("skills", "");
+        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        model.addAttribute("skills", employee.getResume().getSkills());
         return "skills";
     }
 
     @PostMapping("/saveSkills")
     public String saveSkills(@ModelAttribute String skills, Model model) {
-        //получить текущего юзера и сохранить в него contact
+        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        employee.getResume().setSkills(skills);
+        employeeRepos.save(employee);
         return RESUME_PAGE;
     }
 
     @GetMapping("/saveLanguage")
     public String editLanguage(Model model) {
-        //TODO получить резюме текущего пользователя
-        model.addAttribute("language", new Language());
+        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        model.addAttribute("language",employee.getResume().getForeignLanguage());
         return "language";
     }
 
     @PostMapping("/saveLanguage")
     public String saveLanguage(@ModelAttribute Language language, Model model) {
-        //получить текущего юзера и сохранить в него contact
+        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        employee.getResume().setForeignLanguage(language);
+        employeeRepos.save(employee);
         return RESUME_PAGE;
     }
 
-    @Autowired
-    private AuthenticationService authenticationService;
 
     @GetMapping("/show")
     public String showResume(Model model) {

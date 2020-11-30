@@ -21,11 +21,9 @@ public class Vacancy {
     private int minExperience;
     private String schedule;
 
-    @ElementCollection
-    private List<String> duties;
+    private String duties;
 
-    @ElementCollection
-    private List<String> requirements;
+    private String requirements;
 
     @ManyToOne
     @JoinColumn(name="employer_id")

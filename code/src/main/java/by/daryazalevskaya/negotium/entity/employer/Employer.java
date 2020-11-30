@@ -5,6 +5,7 @@ import by.daryazalevskaya.negotium.entity.User;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,11 +30,15 @@ public class Employer {
     private Contact contact;
 
     @OneToMany(mappedBy = "employer")
-    private List<Vacancy> vacancies;
+    private List<Vacancy> vacancies=new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
+
+    public void addVacancy(Vacancy vacancy) {
+        vacancies.add(vacancy);
+    }
 
 
 }
