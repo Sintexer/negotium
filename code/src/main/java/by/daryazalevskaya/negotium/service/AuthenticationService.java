@@ -12,19 +12,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthenticationService {
 
-//    private static AuthenticationService service;
-//
-//    private AuthenticationService() {
-//    }
-//
-//    public static AuthenticationService getService() {
-//        if (service==null) {
-//            service=new AuthenticationService();
-//        }
-//
-//        return service;
-//    }
-
     @Autowired
     private EmployeeRepos employeeRepos;
 
@@ -34,13 +21,13 @@ public class AuthenticationService {
     @Autowired
     private UserRepos userRepos;
 
-    public Employee getAuthentithicatedEmployee() {
+    public Employee getAuthenticatedEmployee() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         long id=userRepos.findUserByUsername(username).getId();
         return employeeRepos.findEmployeeByUserId(id);
     }
 
-    public Employer getAuthentithicatedEmployer() {
+    public Employer getAuthenticatedEmployer() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         long id=userRepos.findUserByUsername(username).getId();
         return employerRepos.findEmployerByUserId(id);

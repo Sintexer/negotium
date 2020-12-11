@@ -10,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller("/employer/vacancy")
+@Controller
+@RequestMapping("/employer/vacancy")
 public class VacancyController {
 
     @Autowired
@@ -22,14 +24,13 @@ public class VacancyController {
 
     @GetMapping("/open")
     public String openVacancy(Model model) {
-        //TODO create page of creation vacancy
         model.addAttribute("vacancy", new Vacancy());
         return "vacancy";
     }
 
     @PostMapping("/open")
     public String saveVacancy(@ModelAttribute Vacancy vacancy) {
-        Employer currentEmployer=authenticationService.getAuthentithicatedEmployer();
+        Employer currentEmployer=authenticationService.getAuthenticatedEmployer();
         currentEmployer.addVacancy(vacancy);
         employerRepos.save(currentEmployer);
         return "redirect:/employer/home";

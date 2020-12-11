@@ -6,9 +6,7 @@ import by.daryazalevskaya.negotium.repos.EmployeeRepos;
 import by.daryazalevskaya.negotium.repos.UserRepos;
 import by.daryazalevskaya.negotium.service.AuthenticationService;
 import by.daryazalevskaya.negotium.service.ConvertService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,87 +29,87 @@ public class ResumeController {
     @Autowired
     private AuthenticationService authenticationService;
 
-    private static final String RESUME_PAGE="employee-home";
+    private static final String REDIRECT_REQUEST ="redirect:/employee/resume/show";
 
     @GetMapping("/savePersonalInfo")
     public String editEmployeePersonalInfo(Model model) {
-        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        Employee employee= authenticationService.getAuthenticatedEmployee();
         model.addAttribute("info", employee.getResume().getPersonalInfo());
         return "personal-employee-info";
     }
 
     @PostMapping("/savePersonalInfo")
     public String savePersonalInfo(@ModelAttribute EmployeePersonalInfo info, Model model) {
-        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        Employee employee= authenticationService.getAuthenticatedEmployee();
         employee.getResume().setPersonalInfo(info);
         employeeRepos.save(employee);
-        return RESUME_PAGE;
+        return REDIRECT_REQUEST;
     }
 
     @GetMapping("/saveContact")
     public String editContact(Model model) {
-        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        Employee employee= authenticationService.getAuthenticatedEmployee();
         model.addAttribute("contact", employee.getResume().getContact());
         return "contact";
     }
 
     @PostMapping("/saveContact")
     public String saveContact(@ModelAttribute Contact contact, Model model) {
-        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        Employee employee= authenticationService.getAuthenticatedEmployee();
         employee.getResume().setContact(contact);
         employeeRepos.save(employee);
-        return RESUME_PAGE;
+        return REDIRECT_REQUEST;
     }
 
     @GetMapping("/saveJobPreference")
     public String editJobPreference(Model model) {
-        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        Employee employee= authenticationService.getAuthenticatedEmployee();
         model.addAttribute("jobPreference", employee.getResume().getJobPreference());
         return "job-preference";
     }
 
     @PostMapping("/saveJobPreference")
     public String saveJobPreference(@ModelAttribute JobPreference jobPreference, Model model) {
-        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        Employee employee= authenticationService.getAuthenticatedEmployee();
         employee.getResume().setJobPreference(jobPreference);
         employeeRepos.save(employee);
-        return RESUME_PAGE;
+        return REDIRECT_REQUEST;
     }
 
     @GetMapping("/saveSkills")
     public String editSkills(Model model) {
-        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        Employee employee= authenticationService.getAuthenticatedEmployee();
         model.addAttribute("skills", employee.getResume().getSkills());
         return "skills";
     }
 
     @PostMapping("/saveSkills")
     public String saveSkills(@ModelAttribute String skills, Model model) {
-        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        Employee employee= authenticationService.getAuthenticatedEmployee();
         employee.getResume().setSkills(skills);
         employeeRepos.save(employee);
-        return RESUME_PAGE;
+        return REDIRECT_REQUEST;
     }
 
     @GetMapping("/saveLanguage")
     public String editLanguage(Model model) {
-        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        Employee employee= authenticationService.getAuthenticatedEmployee();
         model.addAttribute("language",employee.getResume().getForeignLanguage());
         return "language";
     }
 
     @PostMapping("/saveLanguage")
     public String saveLanguage(@ModelAttribute Language language, Model model) {
-        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        Employee employee= authenticationService.getAuthenticatedEmployee();
         employee.getResume().setForeignLanguage(language);
         employeeRepos.save(employee);
-        return RESUME_PAGE;
+        return REDIRECT_REQUEST;
     }
 
 
     @GetMapping("/show")
     public String showResume(Model model) {
-        Employee employee= authenticationService.getAuthentithicatedEmployee();
+        Employee employee= authenticationService.getAuthenticatedEmployee();
 
         model.addAttribute("resume", employee.getResume());
 
@@ -124,7 +122,7 @@ public class ResumeController {
         }
 
 
-        return RESUME_PAGE;
+        return "employee-home";
     }
 
 

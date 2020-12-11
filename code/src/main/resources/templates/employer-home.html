@@ -18,7 +18,7 @@
                 <h4 class="card-subtitle mb-2 text-muted"
                     th:if="${employer.companyName!=null}"
                     th:text="${employer.companyName}"></h4>
-                <p>
+                <p th:if="${employer.country!=null}">
                     <strong>Location</strong>
                     <span th:text="${employer.country}">,</span>
                     <span th:text="${employer.city}"></span>
@@ -81,6 +81,10 @@
         </div>
 
     </div>
+
+    <form th:action="@{/employer/vacancy/open}" method="get">
+        <div><input type="submit" class="btn btn-primary" value="Create vacancy"/></div>
+    </form>
 
 
 </div>

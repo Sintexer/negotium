@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller("/employer")
+@Controller
+@RequestMapping("/employer")
 public class EmployerController {
 
     @Autowired
@@ -18,7 +20,7 @@ public class EmployerController {
 
     @GetMapping("/home")
     public String home(Model model) {
-        model.addAttribute("employer", authenticationService.getAuthentithicatedEmployer());
+        model.addAttribute("employer", authenticationService.getAuthenticatedEmployer());
         return "employer-home";
     }
 
