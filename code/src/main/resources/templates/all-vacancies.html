@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+>
+
+<div th:insert="bootstrap-connect:: link"></div>
+<head>
+    <meta charset="UTF-8">
+    <title>Show vacancies</title>
+</head>
+<body>
+
+
+<div th:if="${role}">
+    <div th:insert="header :: header-employee"></div>
+</div>
+
+<div th:unless="${role}">
+    <div th:insert="header :: header-guest"></div>
+</div>
+
+<div class="container">
+    <h3 class="my-sm-5">Vacancies</h3>
+    <div th:if="${not #lists.isEmpty(vacancies)}">
+        <div th:each="vacancy : ${vacancies}">
+            <div class="card-body col mb-4 border my-sm-3">
+                <h3 class="card-title" th:text="${vacancy.position}"></h3>
+
+                <p>
+                    <strong>Location: </strong>
+                    <span th:text="${vacancy.city} + ',' + ${vacancy.address}"></span>
+                </p>
+                <p>
+                    <strong>Minimal experience</strong>
+                    <span th:text="${vacancy.minExperience}">years</span>
+                </p>
+                <p>
+                    <strong>Schedule: </strong>
+                    <span th:text="${vacancy.schedule}"></span>
+                </p>
+                <p>
+                    <strong>Duties</strong>
+                    <span th:text="${vacancy.duties}"></span>
+                </p>
+                <p>
+                    <strong>Requirements:</strong>
+                    <span th:text="${vacancy.requirements}"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div th:insert="bootstrap-connect:: script"></div>
+
+</body>
+</html>

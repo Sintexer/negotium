@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Resume</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <div th:insert="bootstrap-connect:: link"></div>
 </head>
 <body>
 
-<div th:insert="footer :: footer-employee"></div>
+<div th:insert="header :: header-employee"></div>
 
 <div class="container">
 
@@ -31,7 +30,7 @@
                 <span th:text="${persInfo.city}"></span>
             </p>
         </div>
-        <a href="#" class="btn btn-primary">Edit</a>
+        <a href="/employee/resume/savePersonalInfo" class="btn btn-primary">Edit</a>
     </div>
 
     <div class="card-body border my-sm-3" th:with="contact=${resume.contact}">
@@ -50,7 +49,7 @@
                 <span th:text="${contact.skype}"></span>
             </p>
         </div>
-        <a href="#" class="btn btn-primary">Edit</a>
+        <a href="/employee/resume/saveContact" class="btn btn-primary">Edit</a>
     </div>
 
     <div class="card-body border my-sm-3" th:with="job=${resume.jobPreference}">
@@ -67,7 +66,7 @@
                 <strong>Work schedule:</strong>
                 <span th:text="${job.schedule}"></span>
             </p>
-        <a href="#" class="btn btn-primary">Edit</a>
+        <a href="/employee/resume/saveJobPreference" class="btn btn-primary">Edit</a>
     </div>
 
     <div class="card-body border my-sm-3">
@@ -75,7 +74,7 @@
         <p>
             <span th:if="${resume.skills!=null}" th:text="${${resume.skills}}"></span>
         </p>
-        <a href="#" class="btn btn-primary">Edit</a>
+        <a href="/employee/resume/saveSkills" class="btn btn-primary">Edit</a>
     </div>
 
     <div class="card-body border my-sm-3" th:with="lang=${resume.foreignLanguage}">
@@ -89,19 +88,11 @@
                 <span th:text="${lang.level}"></span>
             </p>
         </div>
-        <a href="#" class="btn btn-primary">Edit</a>
+        <a href="/employee/resume/saveLanguage" class="btn btn-primary">Edit</a>
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+<div th:insert="bootstrap-connect:: script"></div>
 
 </body>
 </html>

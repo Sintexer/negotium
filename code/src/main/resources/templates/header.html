@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+>
+<div th:insert="bootstrap-connect:: link"></div>
 <body>
-<div th:fragment="footer-employee">
+<div th:fragment="header-employee">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
         <div class="container">
@@ -18,10 +17,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Show vacancies <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/vacancy/show">Vacancies <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Show resume <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/employee/resume/show">Show resume <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Raise resume <span class="sr-only">(current)</span></a>
@@ -29,12 +28,16 @@
 
                 </ul>
 
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" class="btn btn-primary" value="Log out"/>
+                </form>
+
             </div>
         </div>
     </nav>
 </div>
 
-<div th:fragment="footer-employer">
+<div th:fragment="header-employer">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
@@ -52,10 +55,13 @@
                         <a class="nav-link" href="#">Watch employees <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Open vacancy <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/vacancy/open">Open vacancy <span class="sr-only">(current)</span></a>
                     </li>
-
                 </ul>
+
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" class="btn btn-primary" value="Log out"/>
+                </form>
 
             </div>
         </div>
@@ -63,7 +69,7 @@
 </div>
 
 
-<div th:fragment="footer-guest">
+<div th:fragment="header-guest">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
@@ -78,11 +84,16 @@
             <div class="collapse navbar-collapse" id="show-vac">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Watch vacancies<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/vacancy/show">Vacancies<span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
 
+                <form th:action="@{/login}" method="get">
+                    <input type="submit" class="btn btn-primary" value="Log in"/>
+                </form>
             </div>
+
+
         </div>
     </nav>
 </div>

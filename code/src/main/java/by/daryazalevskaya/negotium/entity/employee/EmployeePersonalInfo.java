@@ -1,8 +1,7 @@
 package by.daryazalevskaya.negotium.entity.employee;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Embeddable;
 import java.time.LocalDate;
@@ -12,6 +11,8 @@ import java.time.LocalDate;
 public class EmployeePersonalInfo {
     private String name;
     private String surname;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
     private String gender;
     private String country;

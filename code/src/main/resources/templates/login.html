@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<div th:insert="bootstrap-connect:: link"></div>
 
 <head>
     <title>Login</title>
 </head>
 <body>
 
-<div th:insert="footer :: footer-guest"></div>
-
-<div th:if="${param.error}">
-    Invalid username and password.
-</div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
+<div th:insert="header :: header-guest"></div>
 
 
 <div class="container">
+
+    <div th:if="${param.logout}" class="alert alert-primary my-sm-3 " role="alert">
+        You have been logged out.
+    </div>
+
+    <div th:if="${param.error}" class="alert alert-primary my-sm-3 " role="alert">
+        Invalid username and password.
+    </div>
 
     <h2 class="my-sm-3">Authorization</h2>
 
@@ -29,7 +29,7 @@
         <div class="form-group">
 
             <label for="email">Email address</label>
-            <input type="text" class="form-control" id="email" name="username" aria-describedby="emailHelp"
+            <input type="email" class="form-control" id="email" name="username" aria-describedby="emailHelp"
                    placeholder="Email"
                    required>
         </div>
@@ -45,6 +45,7 @@
     </form>
 </div>
 
+<div th:insert="bootstrap-connect:: script"></div>
 
 </body>
 </html>

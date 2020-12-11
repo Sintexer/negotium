@@ -2,13 +2,8 @@ package by.daryazalevskaya.negotium.controller;
 
 import by.daryazalevskaya.negotium.entity.Role;
 import by.daryazalevskaya.negotium.entity.User;
-import by.daryazalevskaya.negotium.entity.employee.Employee;
-import by.daryazalevskaya.negotium.entity.employer.Employer;
-import by.daryazalevskaya.negotium.repos.EmployeeRepos;
-import by.daryazalevskaya.negotium.repos.EmployerRepos;
 import by.daryazalevskaya.negotium.repos.UserRepos;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

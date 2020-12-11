@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Employer</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <div th:insert="bootstrap-connect:: link"></div>
 </head>
 <body>
 
-<div th:insert="footer :: footer-employer"></div>
+<div th:insert="header :: header-employer"></div>
 
 <div class="container">
     <div class="row row-cols-1 row-cols-nd-3">
@@ -52,14 +51,14 @@
 
     <h3 class="my-sm-5">Vacancies</h3>
 
-    <div th:if="${not #lists.isEmpty(employer.vacancies)}">
-        <div th:each="vacancy : ${employer.vacancies}">
+    <div th:if="${not #lists.isEmpty(vacancies)}">
+        <div th:each="vacancy : ${vacancies}">
             <div class="card-body col mb-4 border my-sm-3">
-                <h3 class="card-title" th:text="${vacancy.getPosition()}"></h3>
+                <h3 class="card-title" th:text="${vacancy.position}"></h3>
 
                 <p>
                     <strong>Location: </strong>
-                    <span th:text="${vacancy.city} , ${vacancy.address}"></span>
+                    <span th:text="${vacancy.city} + ',' + ${vacancy.address}"></span>
                 </p>
                 <p>
                     <strong>Minimal experience</strong>
@@ -82,12 +81,14 @@
 
     </div>
 
-    <form th:action="@{/employer/vacancy/open}" method="get">
+    <form th:action="@{/vacancy/open}" method="get">
         <div><input type="submit" class="btn btn-primary" value="Create vacancy"/></div>
     </form>
 
 
 </div>
+
+<div th:insert="bootstrap-connect:: script"></div>
 
 </body>
 </html>

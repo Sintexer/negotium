@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Vacancy</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <div th:insert="bootstrap-connect:: link"></div>
 </head>
 <body>
 
-<div th:insert="footer :: footer-employer"></div>
+<div th:insert="header :: header-employer"></div>
 
 <div class="container">
     <h1 class="text-center my-sm-3">Vacancy</h1>
@@ -17,7 +16,7 @@
         <div class="row justify-content-center">
             <div class="col-4">
 
-                <form th:action="@{/employer/vacancy/open}" th:object="${vacancy}" method="post">
+                <form th:action="@{/vacancy/open}" th:object="${vacancy}" method="post">
 
                     <div class="form-group">
                         <label for="pos">Position </label>
@@ -67,6 +66,8 @@
         </div>
     </div>
 </div>
+
+<div th:insert="bootstrap-connect:: script"></div>
 
 </body>
 </html>

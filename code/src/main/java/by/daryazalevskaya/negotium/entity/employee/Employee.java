@@ -1,7 +1,9 @@
 package by.daryazalevskaya.negotium.entity.employee;
 
 import by.daryazalevskaya.negotium.entity.User;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 

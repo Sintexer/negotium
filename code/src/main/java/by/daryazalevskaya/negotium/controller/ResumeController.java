@@ -6,6 +6,7 @@ import by.daryazalevskaya.negotium.repos.EmployeeRepos;
 import by.daryazalevskaya.negotium.repos.UserRepos;
 import by.daryazalevskaya.negotium.service.AuthenticationService;
 import by.daryazalevskaya.negotium.service.ConvertService;
+import by.daryazalevskaya.negotium.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +25,7 @@ public class ResumeController {
     private EmployeeRepos employeeRepos;
 
     @Autowired
-    private UserRepos userRepos;
+    private EmployeeService employeeService;
 
     @Autowired
     private AuthenticationService authenticationService;
@@ -34,7 +35,7 @@ public class ResumeController {
     @GetMapping("/savePersonalInfo")
     public String editEmployeePersonalInfo(Model model) {
         Employee employee= authenticationService.getAuthenticatedEmployee();
-        model.addAttribute("info", employee.getResume().getPersonalInfo());
+        model.addAttribute("info", employeeService.getPersonalInfo(employee.getResume()));
         return "personal-employee-info";
     }
 

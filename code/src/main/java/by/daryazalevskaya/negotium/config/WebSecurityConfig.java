@@ -1,6 +1,5 @@
 package by.daryazalevskaya.negotium.config;
 
-import by.daryazalevskaya.negotium.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .permitAll();
 
                 .authorizeRequests()
-                .antMatchers("/", "/registration")
+                .antMatchers("/", "/registration", "/vacancy/show")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
