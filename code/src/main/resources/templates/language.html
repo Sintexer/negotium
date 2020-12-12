@@ -17,70 +17,48 @@
         <div class="row justify-content-center">
             <div class="col-5">
 
-                <form th:action="@{/saveLanguage}" th:object="${language}" method="post">
+                <form th:action="@{saveLanguage}" th:object="${language}" method="post">
                     <div class="form-group">
                         <label for="pos">Language name:</label>
                         <input type="text" class="form-control" id="pos" th:value="${language.languageName}"
                                th:field="*{languageName}">
                     </div>
 
-                    <fieldset class="form-group" th:value="${language.level}" th:field="*{level}">
-                        <div class="row">
-                            <legend class="col-form-label col-sm-2 pt-0">Level</legend>
-                            <div class="col-sm-10">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gridRadios" id="a1"
-                                           value="option1"
-                                           checked>
-                                    <label class="form-check-label" for="a1">
-                                        A1(Beginner)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gridRadios" id="a2"
-                                           value="option1"
-                                           checked>
-                                    <label class="form-check-label" for="a2">
-                                        A2(Elementary)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gridRadios" id="b1"
-                                           value="option1"
-                                           checked>
-                                    <label class="form-check-label" for="b1">
-                                        B1(Intermidiate)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gridRadios" id="b2"
-                                           value="option1"
-                                           checked>
-                                    <label class="form-check-label" for="b2">
-                                       B2(Upper-intermidiate)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gridRadios" id="c1"
-                                           value="option1"
-                                           checked>
-                                    <label class="form-check-label" for="c1">
-                                        C1(Expert)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gridRadios" id="c2"
-                                           value="option1"
-                                           checked>
-                                    <label class="form-check-label" for="c2">
-                                        C2(Mastery)
-                                    </label>
-                                </div>
-                            </div>
+                    <div class="form-group">
+                        <label>Level:<br></label>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="a1"  class="custom-control-input" value="A1(Beginner)"
+                                   th:field="*{level}" checked="">
+                            <label class="custom-control-label" for="a1"> A1(Beginner)</label>
                         </div>
-                    </fieldset>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="a2" class="custom-control-input" value="A2(Elementary)"
+                                   th:field="*{level}">
+                            <label class="custom-control-label" for="a2">A2(Elementary)</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="b1" class="custom-control-input" value="B1(Intermidiate)"
+                                   th:field="*{level}">
+                            <label class="custom-control-label" for="b1">B1(Intermidiate)</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="b2" class="custom-control-input" value="B2(Upper-intermidiate)"
+                                   th:field="*{level}">
+                            <label class="custom-control-label" for="b2">B2(Upper-intermidiate)</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="c1" class="custom-control-input" value="C1(Expert)"
+                                   th:field="*{level}">
+                            <label class="custom-control-label" for="c1">C1(Expert)</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="c2" class="custom-control-input" value="C2(Mastery)"
+                                   th:field="*{level}">
+                            <label class="custom-control-label" for="c2">C2(Mastery)</label>
+                        </div>
+                    </div>
 
-                    <div><input type="submit" value="Save changes"/></div>
+                    <div><input type="submit" class="btn btn-primary" value="Save changes"/></div>
                 </form>
             </div>
         </div>

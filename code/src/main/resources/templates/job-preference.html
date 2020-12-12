@@ -16,7 +16,7 @@
         <div class="row justify-content-center">
             <div class="col-5">
 
-                <form th:action="@{/saveJobPreference}" th:object="${jobPreference}" method="post">
+                <form th:action="@{saveJobPreference}" th:object="${jobPreference}" method="post">
                     <div class="form-group">
                         <label for="pos">Desired position</label>
                         <input type="text" class="form-control" id="pos" th:value="${jobPreference.desiredPosition}"
@@ -30,31 +30,21 @@
                     </div>
 
 
-                    <fieldset class="form-group" th:value="${jobPreference.schedule}" th:field="*{schedule}">
-                        <div class="row">
-                            <legend class="col-form-label col-sm-2 pt-0">Work schedule</legend>
-                            <div class="col-sm-10">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
-                                           value="option1"
-                                           checked>
-                                    <label class="form-check-label" for="gridRadios1">
-                                        Full-time
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2"
-                                           value="option1"
-                                           checked>
-                                    <label class="form-check-label" for="gridRadios2">
-                                        Part-time
-                                    </label>
-                                </div>
-                            </div>
+                    <div class="form-group">
+                        <label>Work schedule:<br></label>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="full" name="full" class="custom-control-input" value="Full-time job"
+                                   th:field="*{schedule}" checked>
+                            <label class="custom-control-label" for="full">Full-time job</label>
                         </div>
-                    </fieldset>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="part" name="part" class="custom-control-input" value="Part-time job"
+                                   th:field="*{schedule}">
+                            <label class="custom-control-label" for="part">Part-time job</label>
+                        </div>
+                    </div>
 
-                    <div><input type="submit" value="Save changes"/></div>
+                    <div><input type="submit" class="btn btn-primary" value="Save changes"/></div>
                 </form>
             </div>
         </div>

@@ -1,9 +1,12 @@
 package by.daryazalevskaya.negotium.controller;
 
 import by.daryazalevskaya.negotium.entity.Contact;
-import by.daryazalevskaya.negotium.entity.employee.*;
+import by.daryazalevskaya.negotium.entity.employee.Employee;
+import by.daryazalevskaya.negotium.entity.employee.EmployeePersonalInfo;
+import by.daryazalevskaya.negotium.entity.employee.JobPreference;
+import by.daryazalevskaya.negotium.entity.employee.Language;
+import by.daryazalevskaya.negotium.entity.employee.Resume;
 import by.daryazalevskaya.negotium.repos.EmployeeRepos;
-import by.daryazalevskaya.negotium.repos.UserRepos;
 import by.daryazalevskaya.negotium.service.AuthenticationService;
 import by.daryazalevskaya.negotium.service.ConvertService;
 import by.daryazalevskaya.negotium.service.EmployeeService;
@@ -40,7 +43,7 @@ public class ResumeController {
     }
 
     @PostMapping("/savePersonalInfo")
-    public String savePersonalInfo(@ModelAttribute EmployeePersonalInfo info, Model model) {
+    public String savePersonalInfo(@ModelAttribute EmployeePersonalInfo info) {
         Employee employee= authenticationService.getAuthenticatedEmployee();
         employee.getResume().setPersonalInfo(info);
         employeeRepos.save(employee);
@@ -50,7 +53,7 @@ public class ResumeController {
     @GetMapping("/saveContact")
     public String editContact(Model model) {
         Employee employee= authenticationService.getAuthenticatedEmployee();
-        model.addAttribute("contact", employee.getResume().getContact());
+        model.addAttribute("contact", employeeService.getContact(employee.getResume()));
         return "contact";
     }
 
@@ -65,7 +68,7 @@ public class ResumeController {
     @GetMapping("/saveJobPreference")
     public String editJobPreference(Model model) {
         Employee employee= authenticationService.getAuthenticatedEmployee();
-        model.addAttribute("jobPreference", employee.getResume().getJobPreference());
+        model.addAttribute("jobPreference", employeeService.getJobPreference(employee.getResume()));
         return "job-preference";
     }
 
@@ -95,7 +98,7 @@ public class ResumeController {
     @GetMapping("/saveLanguage")
     public String editLanguage(Model model) {
         Employee employee= authenticationService.getAuthenticatedEmployee();
-        model.addAttribute("language",employee.getResume().getForeignLanguage());
+        model.addAttribute("language",employeeService.getLanguage(employee.getResume()));
         return "language";
     }
 
